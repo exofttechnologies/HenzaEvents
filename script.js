@@ -24,10 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger   = document.getElementById('hamburger');
   const mobileMenu  = document.getElementById('mobile-menu');
   const mobileClose = document.getElementById('mobile-close');
+  const menuOverlay = document.getElementById('menu-overlay');
 
   function openMenu() {
     mobileMenu.classList.add('open');
     mobileMenu.removeAttribute('aria-hidden');
+    if (menuOverlay) menuOverlay.classList.add('open');
     hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeMenu() {
     mobileMenu.classList.remove('open');
     mobileMenu.setAttribute('aria-hidden', 'true');
+    if (menuOverlay) menuOverlay.classList.remove('open');
     hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
@@ -44,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenu.classList.contains('open') ? closeMenu() : openMenu()
   );
   mobileClose.addEventListener('click', closeMenu);
+  if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
   document.querySelectorAll('.mobile-link').forEach(l =>
     l.addEventListener('click', closeMenu)
   );
@@ -197,6 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ───────────────────────────────────────────── */
   const form      = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
+  const btnText   = submitBtn.querySelector('.btn-text');
+  const btnSpinner= submitBtn.querySelector('.btn-spinner');
   const success   = document.getElementById('form-success');
   const nameInp   = document.getElementById('full-name');
   const emailInp  = document.getElementById('email');
@@ -234,8 +240,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setFieldError(emailInp, emailErr, eErr);
     if (nErr || eErr) return;
 
-    const origLabel      = submitBtn.textContent;
-    submitBtn.textContent = 'Sending…';
+    const origLabel      = btnText.textContent;
+    btnText.textContent = 'Sending…';
+    btnSpinner.style.display = 'block';
     submitBtn.disabled    = true;
 
     // Simulate API delay — replace with real fetch() in production
@@ -244,12 +251,42 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
       setFieldError(nameInp,  nameErr,  '');
       setFieldError(emailInp, emailErr, '');
-      submitBtn.textContent = origLabel;
+      btnText.textContent = origLabel;
+      btnSpinner.style.display = 'none';
       submitBtn.disabled    = false;
       // Hide success banner after 5 seconds
       setTimeout(() => success.setAttribute('hidden', ''), 5000);
     }, 1500);
   });
+
+  /* ─────────────────────────────────────────────
+     8. PARALLAX SYSTEM
+  ───────────────────────────────────────────── */
+  if (!reduceMotion) {
+    const heroInner = document.querySelector('.hero-inner');
+    const floatImages = document.querySelectorAll('.img-main, .img-secondary, .cg-main img, .cg-stack img');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
+
+      // Hero text parallax
+      if (heroInner && scrollY < vh + 100) {
+        heroInner.style.transform = `translateY(${scrollY * 0.35}px)`;
+        heroInner.style.opacity = 1 - (scrollY / (vh * 0.8));
+      }
+
+      // About & Why Choose Us image floating parallax
+      floatImages.forEach(img => {
+        const rect = img.parentElement.getBoundingClientRect();
+        if (rect.top < vh && rect.bottom > 0) {
+          const center = rect.top + rect.height / 2;
+          const diff = center - vh / 2;
+          img.style.setProperty('--px-y', `${diff * 0.08}px`);
+        }
+      });
+    }, { passive: true });
+  }
 
 }); // end DOMContentLoaded
 
