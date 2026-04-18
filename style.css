@@ -364,7 +364,7 @@ p { line-height: 1.85; font-size: 0.95rem; }
 /* LARGE hero heading */
 #home h1 {
   font-family: var(--heading);
-  font-size: clamp(3.2rem, 7.5vw, 5.5rem);
+  font-size: clamp(1.6rem, 7.5vw, 4.8rem);
   font-weight: 700;
   color: var(--white);
   line-height: 1.04;
@@ -464,9 +464,14 @@ p { line-height: 1.85; font-size: 0.95rem; }
 }
 .hc-slide.active .hc-caption { transform: translateY(0); opacity: 1; }
 
+/* Carousel Controls Container */
+.hc-controls {
+  display: flex; gap: 8px; align-items: center; justify-content: center;
+  margin-top: 18px; width: fit-content; margin-left: auto; margin-right: auto;
+}
+
 /* Prev / Next nav buttons */
 .hc-btn {
-  position: absolute; top: 50%; transform: translateY(-50%);
   z-index: 10; width: 40px; height: 40px; border-radius: 50%;
   background: rgba(11,17,32,0.70);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
@@ -475,19 +480,16 @@ p { line-height: 1.85; font-size: 0.95rem; }
   display: flex; align-items: center; justify-content: center;
   transition: background 0.25s, border-color 0.25s, transform 0.25s;
 }
-.hc-btn:hover { background: var(--champagne); color: var(--slate); border-color: var(--champagne); transform: translateY(-50%) scale(1.1); }
-.hc-prev { left: 14px; }
-.hc-next { right: 14px; }
+.hc-btn:hover { background: var(--champagne); color: var(--slate); border-color: var(--champagne); transform: scale(1.1); }
 
-/* Dot indicators (outside the clipped carousel) */
+/* Dot indicators */
 .hc-dots {
   display: flex; gap: 8px; align-items: center; justify-content: center;
-  margin-top: 18px; padding: 0.55rem 1.2rem;
+  padding: 0 1.2rem; height: 40px;
   background: rgba(11,17,32,0.65);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(200,169,110,0.22);
-  border-radius: 100px; width: fit-content;
-  margin-left: auto; margin-right: auto;
+  border-radius: 100px;
 }
 .hc-dot {
   width: 8px; height: 8px; border-radius: 50%;

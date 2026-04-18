@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitBtn = document.getElementById('submit-btn');
   const btnText   = submitBtn.querySelector('.btn-text');
   const btnSpinner= submitBtn.querySelector('.btn-spinner');
-  const success   = document.getElementById('form-success');
+
   const nameInp   = document.getElementById('full-name');
   const emailInp  = document.getElementById('email');
   const nameErr   = document.getElementById('name-error');
@@ -247,15 +247,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Simulate API delay — replace with real fetch() in production
     setTimeout(() => {
-      success.removeAttribute('hidden');
+
       form.reset();
       setFieldError(nameInp,  nameErr,  '');
       setFieldError(emailInp, emailErr, '');
       btnText.textContent = origLabel;
       btnSpinner.style.display = 'none';
       submitBtn.disabled    = false;
-      // Hide success banner after 5 seconds
-      setTimeout(() => success.setAttribute('hidden', ''), 5000);
+
     }, 1500);
   });
 
