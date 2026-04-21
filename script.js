@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    const navbar = document.getElementById('navbar');
+    if (navbar) navbar.classList.add('menu-open');
   }
   function closeMenu() {
     mobileMenu.classList.remove('open');
@@ -41,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    const navbar = document.getElementById('navbar');
+    if (navbar) navbar.classList.remove('menu-open');
   }
 
   hamburger.addEventListener('click', () =>
