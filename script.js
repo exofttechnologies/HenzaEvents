@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
      3. ACTIVE NAV LINK (IntersectionObserver)
   ───────────────────────────────────────────── */
   const sections = document.querySelectorAll(
-    '#home, #about, #services, #why-us, #gallery, #how-it-works, #testimonials, #contact'
+    '#home, #about, #services, #why-us, #gallery'
   );
   const navLinks = document.querySelectorAll('.nav-link');
 
@@ -84,11 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'home':          '#home',
     'about':         '#about',
     'services':      '#services',
-    'why-us':        '#services', // no direct nav link; highlight services
+    'why-us':        '#services',
     'gallery':       '#gallery',
-    'how-it-works':  '#home',
-    'testimonials':  '#testimonials',
-    'contact':       '#contact',
   };
 
   const sectionObserver = new IntersectionObserver(entries => {
@@ -125,15 +122,57 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll(); // run once on load
 
   /* ─────────────────────────────────────────────
+     4b. HERO STAGGERED ENTRANCE ANIMATION
+  ───────────────────────────────────────────── */
+  const heroAnimEls = document.querySelectorAll('[data-hero-anim]');
+  if (heroAnimEls.length) {
+    const delays = [0, 300, 500, 750, 1000, 1250]; // ms per step
+    heroAnimEls.forEach(el => {
+      const step = parseInt(el.dataset.heroAnim, 10) || 1;
+      const delay = delays[step] || step * 200;
+      setTimeout(() => {
+        el.classList.add('hero-visible');
+      }, reduceMotion ? 0 : delay);
+    });
+  }
+
+  /* ─────────────────────────────────────────────
+     4c. HERO VIDEO FALLBACK
+  ───────────────────────────────────────────── */
+  const heroVideo = document.querySelector('.hero-video');
+  const heroVideoWrap = document.querySelector('.hero-video-wrap');
+  if (heroVideo && heroVideoWrap) {
+    // If video fails to load, hide it and let the image carousel show through
+    heroVideo.addEventListener('error', () => {
+      heroVideoWrap.style.display = 'none';
+    });
+    // Also check if video stalls on load
+    heroVideo.addEventListener('stalled', () => {
+      heroVideoWrap.style.display = 'none';
+    });
+    // If video can play, dim the carousel images (video takes priority)
+    heroVideo.addEventListener('playing', () => {
+      document.querySelectorAll('.hero-bg-layer').forEach(l => {
+        l.style.opacity = '0';
+        l.classList.remove('active');
+      });
+    });
+    // Attempt to play (some browsers block autoplay)
+    heroVideo.play().catch(() => {
+      heroVideoWrap.style.display = 'none';
+    });
+  }
+
+  /* ─────────────────────────────────────────────
      5. SCROLL REVEAL — fade + slide up
   ───────────────────────────────────────────── */
   if (!reduceMotion) {
     /** Elements to animate on scroll */
     const revealSel = [
       '.eyebrow', '.section-hd h2', '.section-hd .sub',
-      '.svc-card', '.step', '.test-card', '.cinfo-row',
+      '.svc-card', '.test-card',
       '.about-images', '.about-text', '.stat-item',
-      '.check-list li', '.why-list li', '.contact-form-wrap', '.contact-info',
+      '.check-list li', '.why-list li',
       '.gallery-item', '.why-images', '.why-text'
     ].join(',');
 
@@ -185,85 +224,27 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(step);
   }
 
-  new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !counted) {
-      counted = true;
-      document.querySelectorAll('.stat-num[data-target]').forEach(el =>
-        reduceMotion
-          ? (el.textContent = el.dataset.target + (el.dataset.suffix || ''))
-          : animateCounter(el)
-      );
-    }
-  }, { threshold: 0.5 }).observe(statsSection);
-
-  /* ─────────────────────────────────────────────
-     7. CONTACT FORM — inline validation
-  ───────────────────────────────────────────── */
-  const form      = document.getElementById('contact-form');
-  const submitBtn = document.getElementById('submit-btn');
-  const btnText   = submitBtn.querySelector('.btn-text');
-  const btnSpinner= submitBtn.querySelector('.btn-spinner');
-
-  const nameInp   = document.getElementById('full-name');
-  const emailInp  = document.getElementById('email');
-  const nameErr   = document.getElementById('name-error');
-  const emailErr  = document.getElementById('email-error');
-
-  /** Returns an error string or '' if valid */
-  function validate(field) {
-    const v = field.value.trim();
-    if (field.required && !v)             return 'This field is required.';
-    if (field.type === 'email' && v &&
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Please enter a valid email.';
-    return '';
+  if (statsSection) {
+    new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !counted) {
+        counted = true;
+        document.querySelectorAll('.stat-num[data-target]').forEach(el =>
+          reduceMotion
+            ? (el.textContent = el.dataset.target + (el.dataset.suffix || ''))
+            : animateCounter(el)
+        );
+      }
+    }, { threshold: 0.5 }).observe(statsSection);
   }
 
-  /** Apply/clear visible error state */
-  function setFieldError(input, errEl, msg) {
-    errEl.textContent = msg;
-    input.style.borderColor = msg ? '#C0392B' : '#E5E1DA';
-  }
-
-  // Live blur validation
-  nameInp.addEventListener('blur',  () => setFieldError(nameInp,  nameErr,  validate(nameInp)));
-  emailInp.addEventListener('blur', () => setFieldError(emailInp, emailErr, validate(emailInp)));
-
-  // Clear on typing
-  nameInp.addEventListener('input',  () => { if (nameErr.textContent)  setFieldError(nameInp,  nameErr,  ''); });
-  emailInp.addEventListener('input', () => { if (emailErr.textContent) setFieldError(emailInp, emailErr, ''); });
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const nErr = validate(nameInp);
-    const eErr = validate(emailInp);
-    setFieldError(nameInp,  nameErr,  nErr);
-    setFieldError(emailInp, emailErr, eErr);
-    if (nErr || eErr) return;
-
-    const origLabel      = btnText.textContent;
-    btnText.textContent = 'Sending…';
-    btnSpinner.style.display = 'block';
-    submitBtn.disabled    = true;
-
-    // Simulate API delay — replace with real fetch() in production
-    setTimeout(() => {
-
-      form.reset();
-      setFieldError(nameInp,  nameErr,  '');
-      setFieldError(emailInp, emailErr, '');
-      btnText.textContent = origLabel;
-      btnSpinner.style.display = 'none';
-      submitBtn.disabled    = false;
-
-    }, 1500);
-  });
+  /* Contact form removed — validation code cleaned up */
 
   /* ─────────────────────────────────────────────
      8. PARALLAX SYSTEM
   ───────────────────────────────────────────── */
   if (!reduceMotion) {
     const heroInner = document.querySelector('.hero-inner');
-    const floatImages = document.querySelectorAll('.img-main, .img-secondary, .cg-main img, .cg-stack img');
+    const floatImages = document.querySelectorAll('.about-hero-img, .about-secondary-img, .cg-main img, .cg-stack img');
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
@@ -313,8 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const dots      = Array.from(document.querySelectorAll('.hc-dot'));
   const prevBtn   = document.getElementById('hcPrev');
   const nextBtn   = document.getElementById('hcNext');
-  const carousel  = document.getElementById('heroCarousel');
-  const INTERVAL  = 4500; // ms between auto-slides
+  const slideLabel = document.getElementById('heroSlideLabel');
+  const INTERVAL  = 5500; // ms between auto-slides (slower for cinematic feel)
 
   if (!slides.length) return;
 
@@ -322,13 +303,24 @@ document.addEventListener('DOMContentLoaded', () => {
   let current = 0;
   let timer   = null;
 
+  /** Update the slide counter label (e.g. "02 / 05") */
+  function updateLabel() {
+    if (slideLabel) {
+      const num = String(current + 1).padStart(2, '0');
+      const total = String(slides.length).padStart(2, '0');
+      slideLabel.textContent = `${num} / ${total}`;
+    }
+  }
+
   /** Navigate to a specific slide index */
   function goTo(idx) {
     // Deactivate current
     slides[current].classList.remove('active');
     slides[current].setAttribute('aria-hidden', 'true');
-    dots[current].classList.remove('active');
-    dots[current].setAttribute('aria-selected', 'false');
+    if (dots[current]) {
+      dots[current].classList.remove('active');
+      dots[current].setAttribute('aria-selected', 'false');
+    }
     if (bgLayers[current]) bgLayers[current].classList.remove('active');
 
     // Update index (wraps around)
@@ -337,9 +329,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Activate next
     slides[current].classList.add('active');
     slides[current].setAttribute('aria-hidden', 'false');
-    dots[current].classList.add('active');
-    dots[current].setAttribute('aria-selected', 'true');
+    if (dots[current]) {
+      dots[current].classList.add('active');
+      dots[current].setAttribute('aria-selected', 'true');
+    }
     if (bgLayers[current]) bgLayers[current].classList.add('active');
+
+    updateLabel();
   }
 
   const next = () => goTo(current + 1);
@@ -353,26 +349,24 @@ document.addEventListener('DOMContentLoaded', () => {
   function stopAuto() { clearInterval(timer); }
 
   // Initialise
+  updateLabel();
   startAuto();
 
-  // Button controls
-  nextBtn.addEventListener('click', () => { next(); startAuto(); });
-  prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+  // Button controls (hidden but kept for potential keyboard use)
+  if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
 
   // Dot navigation
   dots.forEach((dot, i) =>
     dot.addEventListener('click', () => { goTo(i); startAuto(); })
   );
 
-  // Pause auto-play on hover / focus (accessibility)
-  carousel.addEventListener('mouseenter', stopAuto);
-  carousel.addEventListener('mouseleave', startAuto);
-  carousel.addEventListener('focusin',    stopAuto);
-  carousel.addEventListener('focusout',   startAuto);
-
-  // Keyboard arrow navigation inside carousel
-  carousel.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft')  { prev(); startAuto(); }
-    if (e.key === 'ArrowRight') { next(); startAuto(); }
-  });
+  // Pause auto-play when hero section is not visible
+  const heroSection = document.getElementById('home');
+  if (heroSection) {
+    const heroObserver = new IntersectionObserver(entries => {
+      entries[0].isIntersecting ? startAuto() : stopAuto();
+    }, { threshold: 0.1 });
+    heroObserver.observe(heroSection);
+  }
 })();

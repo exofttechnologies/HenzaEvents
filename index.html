@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <!-- Preload first hero carousel image so it appears instantly -->
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1555244162-803834f70033?w=780&q=85" fetchpriority="high"/>
+  <link rel="preload" as="image" href="images/hero1.jpeg" fetchpriority="high"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -38,8 +38,7 @@
       <li><a href="#about"        class="nav-link">About</a></li>
       <li><a href="#services"     class="nav-link">Services</a></li>
       <li><a href="#gallery"      class="nav-link">Gallery</a></li>
-      <li><a href="#testimonials" class="nav-link">Reviews</a></li>
-      <li><a href="#contact"      class="nav-link">Contact</a></li>
+
     </ul>
     <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -58,152 +57,162 @@
     <li><a href="#about"        class="mobile-link">About</a></li>
     <li><a href="#services"     class="mobile-link">Services</a></li>
     <li><a href="#gallery"      class="mobile-link">Gallery</a></li>
-    <li><a href="#testimonials" class="mobile-link">Reviews</a></li>
-    <li><a href="#contact"      class="mobile-link">Contact</a></li>
+
   </ul>
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     HERO — Full screen, background carousel + overlay
+     HERO — Cinematic full-screen with video/image background
 ════════════════════════════════════════════════ -->
 <section id="home" aria-labelledby="hero-heading">
 
-  <!-- Background fade layers (JS toggles .active) -->
-  <div class="hero-bg-layer active" style="background-image:url('https://images.unsplash.com/photo-1555244162-803834f70033?w=1600&q=85')"></div>
-  <div class="hero-bg-layer"        style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85')"></div>
-  <div class="hero-bg-layer"        style="background-image:url('https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=1600&q=85')"></div>
-  <div class="hero-bg-layer"        style="background-image:url('https://i.pinimg.com/1200x/a1/7b/4a/a17b4afc6d54a2f3c4f5edfa12bb5617.jpg')"></div>
-  <div class="hero-bg-layer"        style="background-image:url('https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1600&q=85')"></div>
+  <!-- Background fade layers (image carousel + JS toggles .active) -->
+  <div class="hero-bg-layer active" style="background-image:url('images/hero1.jpeg')"></div>
+  <div class="hero-bg-layer"        style="background-image:url('images/hero2.jpeg')"></div>
+  <div class="hero-bg-layer"        style="background-image:url('images/hero3.jpeg')"></div>
+  <div class="hero-bg-layer"        style="background-image:url('images/hero4.jpeg')"></div>
+  <div class="hero-bg-layer"        style="background-image:url('images/photo7.jpeg')"></div>
 
-  <!-- Gradient overlay on top of bg -->
+  <!-- Multi-layer cinematic overlay -->
   <div class="hero-overlay"></div>
 
+  <!-- Floating ambient particles -->
+  <div class="hero-particles" aria-hidden="true">
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+  </div>
+
+  <!-- Main hero content -->
   <div class="hero-inner">
     <div class="hero-text">
-      <span class="eyebrow">Kerala's Premier Catering Company</span>
-      <h1 id="hero-heading">Crafting&nbsp;Moments,<br><em>Serving</em>&nbsp;Excellence</h1>
-      <p class="hero-sub">From intimate celebrations to grand weddings — Henza Events delivers professional catering experiences across Calicut and Malappuram with precision and warmth.</p>
-      <div class="hero-btns">
-        <a href="#contact" class="btn-primary" id="hero-cta-1">Request a Quote</a>
-        <a href="#services" class="btn-ghost" id="hero-cta-2">Our Services</a>
+      <span class="hero-eyebrow" data-hero-anim="1">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Kerala's Premier Catering Company
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </span>
+      <div class="hero-divider-line" data-hero-anim="2">
+        <span class="hero-divider-diamond"></span>
       </div>
+      <h1 id="hero-heading" data-hero-anim="3">Crafting&nbsp;Moments,<br><em>Serving</em>&nbsp;Excellence</h1>
+      <p class="hero-sub" data-hero-anim="4">From intimate celebrations to grand weddings — Henza Events delivers professional catering experiences across Calicut &amp; Malappuram with precision and warmth.</p>
+      <div class="hero-btns" data-hero-anim="5">
 
-    </div>
-
-    <!-- Hero image carousel panel -->
-    <div class="hero-carousel-wrap">
-      <div class="hero-carousel" id="heroCarousel" role="region" aria-label="Hero image slideshow">
-        <div class="hc-track" id="hcTrack">
-
-          <div class="hc-slide" aria-hidden="false">
-            <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=780&q=85"
-                 alt="Elegant catering buffet setup by Henza Events Kerala"
-                 loading="eager" fetchpriority="high"/>
-            <div class="hc-caption">Grand Buffet Setup</div>
-          </div>
-
-          <div class="hc-slide" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=780&q=85"
-                 alt="Fine dining plated course elegantly served by Henza Events"
-                 loading="lazy"/>
-            <div class="hc-caption">Fine Dining Experience</div>
-          </div>
-
-          <div class="hc-slide" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=780&q=85"
-                 alt="Gourmet catering platter by Henza Events Kerala"
-                 loading="lazy"/>
-            <div class="hc-caption">Gourmet Platters</div>
-          </div>
-
-          <div class="hc-slide" aria-hidden="true">
-            <img src="https://i.pinimg.com/1200x/a1/7b/4a/a17b4afc6d54a2f3c4f5edfa12bb5617.jpg"
-                 alt="Elegant wedding reception décor and catering by Henza Events"
-                 loading="lazy"/>
-            <div class="hc-caption">Wedding Receptions</div>
-          </div>
-
-          <div class="hc-slide" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=780&q=85"
-                 alt="Kerala style catering spread by Henza Events team"
-                 loading="lazy"/>
-            <div class="hc-caption">Kerala Catering Spread</div>
-          </div>
-
-        </div>
-
+        <a href="#services" class="btn-ghost" id="hero-cta-2">
+          <span>Our Services</span>
+        </a>
       </div>
-
-      <!-- Controls outside the clipped carousel -->
-      <div class="hc-controls">
-        <!-- Prev button -->
-        <button class="hc-btn hc-prev" id="hcPrev" aria-label="Previous slide">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        
-        <!-- Dots indicators -->
-        <div class="hc-dots" id="hcDots" role="tablist" aria-label="Slide indicators">
-          <button class="hc-dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
-          <button class="hc-dot"        role="tab" aria-selected="false" aria-label="Slide 2"></button>
-          <button class="hc-dot"        role="tab" aria-selected="false" aria-label="Slide 3"></button>
-          <button class="hc-dot"        role="tab" aria-selected="false" aria-label="Slide 4"></button>
-          <button class="hc-dot"        role="tab" aria-selected="false" aria-label="Slide 5"></button>
-        </div>
-
-        <!-- Next button -->
-        <button class="hc-btn hc-next" id="hcNext" aria-label="Next slide">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-
-
     </div>
   </div>
 
-  <!-- Scroll cue -->
-  <div class="scroll-cue" aria-hidden="true">
-    <div class="scroll-line"></div>
-    <span>SCROLL</span>
+  <!-- Bottom bar: slide indicator + scroll cue -->
+  <div class="hero-bottom-bar" aria-hidden="true">
+    <div class="hero-slide-indicator">
+      <div class="hc-dots" id="hcDots" role="tablist" aria-label="Slide indicators">
+        <button class="hc-dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
+        <button class="hc-dot"        role="tab" aria-selected="false" aria-label="Slide 2"></button>
+        <button class="hc-dot"        role="tab" aria-selected="false" aria-label="Slide 3"></button>
+        <button class="hc-dot"        role="tab" aria-selected="false" aria-label="Slide 4"></button>
+        <button class="hc-dot"        role="tab" aria-selected="false" aria-label="Slide 5"></button>
+      </div>
+      <span class="hero-slide-label" id="heroSlideLabel">01 / 05</span>
+    </div>
+    <div class="scroll-cue">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll to explore</span>
+    </div>
+  </div>
+
+  <!-- Hidden carousel (drives background sync via JS — no visible panel) -->
+  <div style="display:none">
+    <div id="heroCarousel">
+      <div id="hcTrack">
+        <div class="hc-slide active" aria-hidden="false"></div>
+        <div class="hc-slide" aria-hidden="true"></div>
+        <div class="hc-slide" aria-hidden="true"></div>
+        <div class="hc-slide" aria-hidden="true"></div>
+        <div class="hc-slide" aria-hidden="true"></div>
+      </div>
+    </div>
+    <button id="hcPrev"></button>
+    <button id="hcNext"></button>
   </div>
 </section>
 
 
 
 <!-- ═══════════════════════════════════════════════
-     ABOUT — Image + text split layout
+     ABOUT — Premium two-column layout
 ════════════════════════════════════════════════ -->
 <section id="about" aria-labelledby="about-heading">
   <div class="about-inner">
+
+    <!-- Image column -->
     <div class="about-images">
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=85" alt="Elegantly plated fine dining at a Henza Events catering" class="img-main"/>
-      <img src="https://images.unsplash.com/photo-1581349485608-9469926a8e5e?w=500&q=85" alt="Professional catering team setting up banquet tables" class="img-secondary"/>
-      <div class="about-badge"><span>Since</span><strong>2022</strong></div>
+      <div class="about-img-frame">
+        <img src="images/photo1.jpeg" alt="Elegantly plated fine dining at a Henza Events catering" class="about-hero-img"/>
+        <div class="about-img-accent" aria-hidden="true"></div>
+      </div>
+      <div class="about-img-secondary-wrap">
+        <img src="images/photo2.jpeg" alt="Professional catering team setting up banquet tables" class="about-secondary-img"/>
+      </div>
+      <div class="about-badge">
+        <span>Since</span>
+        <strong>2022</strong>
+      </div>
     </div>
+
+    <!-- Text column -->
     <div class="about-text">
       <span class="eyebrow dark">Who We Are</span>
-      <h2 id="about-heading">A Team Built on<br>Trust &amp; Excellence</h2>
-      <p>Henza Events is a professional catering and events staffing team based in Kerala. We place skilled hospitality workers at weddings, corporate events, and private functions across Calicut, Malappuram, and beyond. Our team is dedicated to making every occasion seamless and memorable.</p>
+      <h2 id="about-heading">A Team Built on<br>Trust &amp; <em>Excellence</em></h2>
+      <div class="about-divider" aria-hidden="true"></div>
+      <p class="about-lead">Henza Events is a professional catering and events staffing team based in Kerala. We place skilled hospitality workers at weddings, corporate events, and private functions across Calicut, Malappuram, and beyond.</p>
+      <p class="about-detail">Our team is dedicated to making every occasion seamless and memorable — from the first conversation to the last plate served.</p>
       <ul class="check-list">
         <li>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Professionally trained catering staff at every level
+          <div class="check-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <strong>Expert Staff</strong>
+            <span>Professionally trained catering teams at every level</span>
+          </div>
         </li>
         <li>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Seamless coordination from first contact to final service
+          <div class="check-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <strong>Full Coordination</strong>
+            <span>Seamless planning from first contact to final service</span>
+          </div>
         </li>
         <li>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Trusted by 500+ event organizers across Kerala
+          <div class="check-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <strong>Trusted by 500+</strong>
+            <span>Event organizers across Kerala rely on us</span>
+          </div>
         </li>
       </ul>
-      <a href="#contact" class="btn-primary" id="about-cta">Start Planning</a>
+
     </div>
+
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════
-     SERVICES — Image-based cards with hover zoom overlay
+     SERVICES — Premium image cards with overlay
 ════════════════════════════════════════════════ -->
 <section id="services" aria-labelledby="svc-heading">
   <div class="section-hd">
@@ -214,98 +223,42 @@
   <div class="svc-grid">
 
     <article class="svc-card" id="svc-wedding">
-      <div class="svc-img">
-        <img src="https://i.pinimg.com/1200x/a1/7b/4a/a17b4afc6d54a2f3c4f5edfa12bb5617.jpg" alt="Wedding catering and event staffing by Henza Events"/>
-        <div class="svc-overlay">
-          <div class="svc-overlay-content">
-            <h3>Wedding Events</h3>
-            <p>Full catering staff for weddings — waiters, counters, servers and coordinators.</p>
-            <a href="#contact" class="svc-overlay-link">Enquire Now
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="svc-info">
-        <div class="svc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </div>
-        <h3>Wedding Events</h3>
-        <a href="#contact" class="card-link-bottom">Enquire
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+      <img src="images/photo3.jpeg" alt="Wedding catering and event staffing by Henza Events" loading="lazy"/>
+      <div class="svc-overlay">
+        <span class="svc-num">01</span>
+        <h3>Wedding Catering</h3>
+        <p>Full catering staff for weddings — waiters, counters, servers and coordinators for your perfect day.</p>
+
       </div>
     </article>
 
     <article class="svc-card" id="svc-corporate">
-      <div class="svc-img">
-        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=85" alt="Corporate event catering and hospitality by Henza Events"/>
-        <div class="svc-overlay">
-          <div class="svc-overlay-content">
-            <h3>Corporate Events</h3>
-            <p>Premium hospitality teams for meetings, launches, galas and award nights.</p>
-            <a href="#contact" class="svc-overlay-link">Enquire Now
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="svc-info">
-        <div class="svc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-        </div>
+      <img src="images/photo4.jpeg" alt="Corporate event catering and hospitality by Henza Events" loading="lazy"/>
+      <div class="svc-overlay">
+        <span class="svc-num">02</span>
         <h3>Corporate Events</h3>
-        <a href="#contact" class="card-link-bottom">Enquire
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <p>Premium hospitality teams for meetings, product launches, galas, and award nights.</p>
+
       </div>
     </article>
 
     <article class="svc-card" id="svc-private">
-      <div class="svc-img">
-        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=85" alt="Private celebration catering and staffing by Henza Events"/>
-        <div class="svc-overlay">
-          <div class="svc-overlay-content">
-            <h3>Private Celebrations</h3>
-            <p>Birthdays, anniversaries, and family functions handled with warmth and care.</p>
-            <a href="#contact" class="svc-overlay-link">Enquire Now
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="svc-info">
-        <div class="svc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-        </div>
-        <h3>Private Celebrations</h3>
-        <a href="#contact" class="card-link-bottom">Enquire
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+      <img src="images/photo5.jpeg" alt="Private celebration catering and staffing by Henza Events" loading="lazy"/>
+      <div class="svc-overlay">
+        <span class="svc-num">03</span>
+        <h3>Private Functions</h3>
+        <p>Birthdays, anniversaries, and family functions handled with personal warmth and care.</p>
+
       </div>
     </article>
 
-    <article class="svc-card" id="svc-buffet">
-      <div class="svc-img">
-        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&q=85" alt="Buffet and counter service catering by Henza Events Kerala"/>
-        <div class="svc-overlay">
-          <div class="svc-overlay-content">
-            <h3>Buffet &amp; Counter</h3>
-            <p>Experienced buffet and counter staff for large-scale events across Kerala.</p>
-            <a href="#contact" class="svc-overlay-link">Enquire Now
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="svc-info">
-        <div class="svc-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
-        </div>
-        <h3>Buffet &amp; Counter Service</h3>
-        <a href="#contact" class="card-link-bottom">Enquire
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+    <article class="svc-card" id="svc-outdoor">
+      <img src="images/photo6.jpeg" alt="Outdoor event catering by Henza Events Kerala" loading="lazy"/>
+      <div class="svc-overlay">
+        <span class="svc-num">04</span>
+        <h3>Outdoor Events</h3>
+        <p>Experienced catering teams for outdoor celebrations, garden parties, and open-air events.</p>
+
       </div>
     </article>
 
@@ -319,13 +272,13 @@
   <div class="why-inner">
     <div class="why-images">
       <div class="cg-main">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=85"
+        <img src="images/photo7.jpeg"
              alt="Elegantly plated fine dining catering by Henza Events Kerala"/>
       </div>
       <div class="cg-stack">
-        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=500&q=85"
+        <img src="images/hero2.jpeg"
              alt="Gourmet catering food platter elegantly presented by Henza Events"/>
-        <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=500&q=85"
+        <img src="images/hero4.jpeg"
              alt="Catering spread with variety of dishes prepared by Henza Events team"/>
       </div>
     </div>
@@ -389,7 +342,7 @@
           </div>
         </li>
       </ul>
-      <a href="#contact" class="btn-primary" id="why-cta">Book Now</a>
+
     </div>
   </div>
 </section>
@@ -406,71 +359,71 @@
   <div class="gallery-grid">
 
     <div class="gallery-item gallery-large" id="gallery-1">
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Fine dining catering setup by Henza Events"/>
+      <img src="images/photo1.jpeg" alt="Premium event catering by Henza Events" loading="lazy" />
       <div class="gallery-overlay">
         <div class="gallery-overlay-text">
-          <span>Fine Dining</span>
-          <p>Plated perfection</p>
+          <span>Grand Celebrations</span>
+          <p>Wedding Masterpieces</p>
         </div>
       </div>
     </div>
 
     <div class="gallery-item" id="gallery-2">
-      <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&q=85" alt="Grand buffet spread at a Kerala wedding catered by Henza Events"/>
+      <img src="images/photo2.jpeg" alt="Gourmet catering setup by Henza Events" loading="lazy" />
       <div class="gallery-overlay">
         <div class="gallery-overlay-text">
-          <span>Grand Buffet</span>
-          <p>Wedding spread</p>
+          <span>Elegant Setup</span>
+          <p>Meticulous Details</p>
         </div>
       </div>
     </div>
 
     <div class="gallery-item" id="gallery-3">
-      <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=85" alt="Kerala style cuisine catering by Henza Events team"/>
+      <img src="images/photo3.jpeg" alt="Luxury buffet spread by Henza Events" loading="lazy" />
       <div class="gallery-overlay">
         <div class="gallery-overlay-text">
-          <span>Kerala Cuisine</span>
-          <p>Traditional spreads</p>
+          <span>Luxury Buffet</span>
+          <p>Abundant Spreads</p>
         </div>
       </div>
     </div>
 
     <div class="gallery-item" id="gallery-4">
-      <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&q=85" alt="Gourmet platters prepared by Henza Events catering team"/>
+      <img src="images/photo4.jpeg" alt="Professional event coordination by Henza Events" loading="lazy" />
       <div class="gallery-overlay">
         <div class="gallery-overlay-text">
-          <span>Gourmet Platters</span>
-          <p>Artful presentation</p>
+          <span>Premium Service</span>
+          <p>Exceptional Staffing</p>
         </div>
       </div>
     </div>
 
     <div class="gallery-item" id="gallery-5">
-      <img src="https://images.pexels.com/photos/29040997/pexels-photo-29040997.jpeg?_gl=1*qbralx*_ga*NjY3MTIyNTg1LjE3NzE3MTMwMjg.*_ga_8JE65Q40S6*czE3NzY1MDAzNjEkbzIkZzAkdDE3NzY1MDAzNjEkajYwJGwwJGgw" alt="Elegant wedding event catered by Henza Events"/>
+      <img src="images/photo5.jpeg" alt="Corporate event catering by Henza Events" loading="lazy" />
       <div class="gallery-overlay">
         <div class="gallery-overlay-text">
-          <span>Wedding Reception</span>
-          <p>Timeless elegance</p>
+          <span>Corporate Events</span>
+          <p>Professional Styling</p>
         </div>
       </div>
     </div>
 
     <div class="gallery-item" id="gallery-6">
-      <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=85" alt="Elegant event table setup by Henza Events"/>
+      <img src="images/photo6.jpeg" alt="Private function decor by Henza Events" loading="lazy" />
       <div class="gallery-overlay">
         <div class="gallery-overlay-text">
-          <span>Event Decor</span>
-          <p>Exquisite settings</p>
+          <span>Private Gatherings</span>
+          <p>Intimate Perfection</p>
         </div>
       </div>
     </div>
 
     <div class="gallery-item gallery-large-end" id="gallery-7">
-      <img src="https://www.opusrentals.com/wp-content/uploads/premium-table-setting-2.png" alt="Corporate event catering and décor by Henza Events"/>
+      <img src="images/photo7.jpeg" alt="Exclusive catering and decor by Henza Events" loading="lazy" />
       <div class="gallery-overlay">
         <div class="gallery-overlay-text">
-          <span>Corporate Events</span>
-          <p>Professional styling</p>
+          <span>Exclusive Decor</span>
+          <p>Timeless Elegance</p>
         </div>
       </div>
     </div>
@@ -478,215 +431,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     HOW IT WORKS — Process steps
-════════════════════════════════════════════════ -->
-<section id="how-it-works" aria-labelledby="hiw-heading">
-  <div class="section-hd">
-    <span class="eyebrow dark">The Process</span>
-    <h2 id="hiw-heading">How Henza Events Works</h2>
-    <p class="sub dark">Simple for clients. Exceptional every time.</p>
-  </div>
 
-  <div class="hiw-block">
-    <div class="steps-row">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.91 5.91l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </div>
-        <h3>Contact Us</h3>
-        <p>Fill our contact form or call us to discuss your event requirements.</p>
-      </div>
-      <div class="step-arrow">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-        </div>
-        <h3>We Plan &amp; Assign</h3>
-        <p>Our coordinator plans the right team size and assigns skilled staff.</p>
-      </div>
-      <div class="step-arrow">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>Team Arrives</h3>
-        <p>Henza Events team arrives on time, uniformed and fully prepared.</p>
-      </div>
-      <div class="step-arrow">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-ico">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <h3>Event Success</h3>
-        <p>Your event runs flawlessly. We handle everything so you enjoy the moment.</p>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     TESTIMONIALS — Auto-scroll carousel
-════════════════════════════════════════════════ -->
-<section id="testimonials" aria-labelledby="test-heading">
-  <div class="section-hd">
-    <span class="eyebrow dark">Client Reviews</span>
-    <h2 id="test-heading">What Our Clients Say</h2>
-    <p class="sub dark">Real words from the people who trusted us with their special moments.</p>
-  </div>
-
-  <div class="tc-outer">
-    <div class="tc-track" id="tcTrack">
-
-      <article class="test-card">
-        <svg class="quote-ico" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm9 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-        <div class="stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p>"The team from Henza Events made our wedding day absolutely perfect. Every staff member was professional, well-presented, and genuinely attentive to our guests throughout."</p>
-        <div class="reviewer"><div class="avatar">P</div><div><strong>Priya Sharma</strong><span>Wedding Client, Calicut</span></div></div>
-      </article>
-
-      <article class="test-card">
-        <svg class="quote-ico" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm9 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-        <div class="stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p>"We hired Henza Events for our corporate gala with over 200 guests. The coordination was flawless and the team handled everything without a single issue from start to finish."</p>
-        <div class="reviewer"><div class="avatar">R</div><div><strong>Rajesh Nair</strong><span>Corporate Event, Kerala</span></div></div>
-      </article>
-
-      <article class="test-card">
-        <svg class="quote-ico" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm9 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-        <div class="stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p>"Very professional and reliable team. The coordination was seamless from start to finish. I highly recommend Henza Events for any event in Kerala!"</p>
-        <div class="reviewer"><div class="avatar">A</div><div><strong>Anita Menon</strong><span>Private Party, Malappuram</span></div></div>
-      </article>
-
-      <article class="test-card">
-        <svg class="quote-ico" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm9 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-        <div class="stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A96E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p>"Exceptional service from start to finish. The Henza Events team was punctual, well-dressed and made our family function truly memorable for everyone present."</p>
-        <div class="reviewer"><div class="avatar">M</div><div><strong>Mohammed Salih</strong><span>Family Function, Malappuram</span></div></div>
-      </article>
-
-    </div><!-- /tc-track -->
-  </div><!-- /tc-outer -->
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     CONTACT — Split layout with styled form
-════════════════════════════════════════════════ -->
-<section id="contact" aria-labelledby="contact-heading">
-  <div class="contact-inner">
-    <div class="contact-info">
-      <span class="eyebrow light">Get In Touch</span>
-      <h2 id="contact-heading" class="light">Let's Plan Your<br><em>Perfect Event</em></h2>
-      <p class="light">Fill in the form and the Henza Events team will contact you within 24 hours with a personalised quote.</p>
-      <div class="cinfo-list">
-        <div class="cinfo-row">
-          <div class="cinfo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div><label>Location</label><a href="https://maps.app.goo.gl/JAde3EPqtnNTGGsw9?g_st=ic" target="_blank" rel="noopener" style="text-transform: none; font-size: inherit; font-weight: inherit;">Vilayil, Kizhisseri, Malappuram</a></div>
-        </div>
-        <div class="cinfo-row">
-          <div class="cinfo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.91 5.91l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-          <div><label>Phone</label><a href="tel:+919207687001">+91 92076 87001</a></div>
-        </div>
-        <div class="cinfo-row">
-          <div class="cinfo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div><label>Email</label><a href="mailto:hello@henzaevents.in">hello@henzaevents.in</a></div>
-        </div>
-        <div class="cinfo-row">
-          <div class="cinfo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <div><label>Hours</label><span>Monday – Saturday, 9AM – 7PM</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form-wrap">
-      <form id="contact-form" novalidate aria-label="Event enquiry form">
-
-        <div class="f-row two">
-          <div class="f-group fl-group">
-            <input type="text" id="full-name" name="fullName" placeholder=" " required autocomplete="name"/>
-            <label for="full-name" class="fl-label">Full Name *</label>
-            <span class="f-err" id="name-error" role="alert"></span>
-          </div>
-          <div class="f-group fl-group">
-            <input type="tel" id="phone" name="phone" placeholder=" " autocomplete="tel"/>
-            <label for="phone" class="fl-label">Phone Number</label>
-          </div>
-        </div>
-        <div class="f-row">
-          <div class="f-group fl-group">
-            <input type="email" id="email" name="email" placeholder=" " required autocomplete="email"/>
-            <label for="email" class="fl-label">Email Address *</label>
-            <span class="f-err" id="email-error" role="alert"></span>
-          </div>
-        </div>
-        <div class="f-row two">
-          <div class="f-group">
-            <label for="event-type" class="fl-select-label">Event Type</label>
-            <select id="event-type" name="eventType"><option value="">Select type</option><option>Wedding</option><option>Corporate Event</option><option>Birthday Party</option><option>Anniversary</option><option>Private Dinner</option><option>Other</option></select>
-          </div>
-          <div class="f-group">
-            <label for="guests" class="fl-select-label">Expected Guests</label>
-            <select id="guests" name="guests"><option value="">Select count</option><option>Under 50</option><option>50–100</option><option>100–200</option><option>200–500</option><option>500+</option></select>
-          </div>
-        </div>
-        <div class="f-row">
-          <div class="f-group">
-            <label for="event-date" class="fl-select-label">Event Date</label>
-            <input type="date" id="event-date" name="eventDate"/>
-          </div>
-        </div>
-        <div class="f-row">
-          <div class="f-group fl-group">
-            <textarea id="message" name="message" rows="4" placeholder=" "></textarea>
-            <label for="message" class="fl-label">Message / Requirements</label>
-          </div>
-        </div>
-        <button type="submit" id="submit-btn" class="btn-submit">
-          <span class="btn-text">Send Enquiry</span>
-          <svg class="btn-spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
-            <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="0.85"></path>
-          </svg>
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════════════════════════════════════════
      FOOTER — Dark navy with contact info + socials
@@ -701,19 +446,7 @@
       </a>
       <p class="tagline">Crafting Moments, Serving Excellence</p>
       <p class="f-brand-desc">Professional catering company serving weddings, corporate events and private celebrations across Kerala with precision and warmth.</p>
-      <div class="socials">
-        <a href="https://www.instagram.com/henza_events_?igsh=dnRyZG42eTRpZDhl" class="soc-btn" aria-label="Instagram" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-        </a>
-        <a href="mailto:hello@henzaevents.in" class="soc-btn" aria-label="Email">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </a>
-        <a href="https://wa.me/919207687001" class="soc-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.032 2C6.495 2 2 6.495 2 12.032c0 1.765.46 3.486 1.334 5L2 22l5.1-1.336A9.957 9.957 0 0 0 12.032 22C17.568 22 22 17.568 22 12.032 22 6.495 17.568 2 12.032 2zm0 18.3A8.32 8.32 0 0 1 7.78 18.9l-.305-.181-3.111.815.832-3.033-.198-.316a8.318 8.318 0 0 1-1.298-4.48c0-4.593 3.738-8.331 8.332-8.331A8.324 8.324 0 0 1 20.364 12c0 4.59-3.737 8.3-8.332 8.3z"/>
-          </svg>
-        </a>
-      </div>
+
     </div>
 
     <!-- Services column -->
@@ -725,11 +458,39 @@
         <li><a href="#services">Private Celebrations</a></li>
         <li><a href="#services">Buffet &amp; Counter Service</a></li>
         <li><a href="#services">Birthday &amp; Anniversaries</a></li>
-        <li><a href="#contact">Request a Quote</a></li>
+
       </ul>
     </div>
 
-    <!-- Contact + App column -->
+    <!-- Contact Info column -->
+    <div class="f-col">
+      <h3 class="f-title">Contact Us</h3>
+      <div class="f-contact">
+        <div class="f-contact-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <span class="f-contact-label">Location</span>
+            <a href="https://maps.app.goo.gl/JAde3EPqtnNTGGsw9?g_st=ic" target="_blank" rel="noopener">Calicut, Kochi, Malappuram</a>
+          </div>
+        </div>
+        <div class="f-contact-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.91 5.91l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div>
+            <span class="f-contact-label">Phone</span>
+            <a href="tel:+919207687001">+91 92076 87001</a>
+          </div>
+        </div>
+        <div class="f-contact-row">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div>
+            <span class="f-contact-label">Email</span>
+            <a href="mailto:hello@henzaevents.in">hello@henzaevents.in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- App column -->
     <div class="f-col">
       <h3 class="f-title">Our App</h3>
       <a href="https://play.google.com/store/apps/details?id=com.exoft.elegent" class="f-dl-btn" target="_blank" rel="noopener" aria-label="Get on Google Play">
@@ -743,8 +504,21 @@
     </div>
 
   </div>
+  <div class="footer-socials">
+    <a href="https://www.instagram.com/henza_events_?igsh=dnRyZG42eTRpZDhl" class="soc-btn" aria-label="Instagram" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+    </a>
+    <a href="mailto:hello@henzaevents.in" class="soc-btn" aria-label="Email">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+    <a href="https://wa.me/919207687001" class="soc-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.032 2C6.495 2 2 6.495 2 12.032c0 1.765.46 3.486 1.334 5L2 22l5.1-1.336A9.957 9.957 0 0 0 12.032 22C17.568 22 22 17.568 22 12.032 22 6.495 17.568 2 12.032 2zm0 18.3A8.32 8.32 0 0 1 7.78 18.9l-.305-.181-3.111.815.832-3.033-.198-.316a8.318 8.318 0 0 1-1.298-4.48c0-4.593 3.738-8.331 8.332-8.331A8.324 8.324 0 0 1 20.364 12c0 4.59-3.737 8.3-8.332 8.3z"/>
+      </svg>
+    </a>
+  </div>
   <div class="footer-bottom">
-    <p>© 2026 Henza Events. All Rights Reserved. · Calicut · Malappuram</p>
+    <p>© 2026 Henza Events. All Rights Reserved. · Calicut · Kochi · Malappuram</p>
     <div class="f-legal" style="display: none;">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms &amp; Conditions</a>
