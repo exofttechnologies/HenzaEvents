@@ -1475,13 +1475,6 @@ p { line-height: 1.85; font-size: 0.95rem; }
   margin-bottom: 0.6rem; transition: var(--ease); min-height: 44px;
 }
 .f-dl-btn:hover { border-color: var(--champagne); transform: translateY(-2px); }
-
-.f-app-btns {
-  display: flex; gap: 10px; width: 100%;
-}
-.f-app-btns .f-dl-btn {
-  flex: 1; justify-content: center; padding: 0.6rem 0.5rem; margin-bottom: 0;
-}
 .f-dl-soon { cursor: not-allowed; opacity: 0.8; }
 .f-dl-soon:hover { border-color: rgba(200,169,110,0.18); transform: translateY(0); }
 .f-coming-tag {
@@ -1489,6 +1482,27 @@ p { line-height: 1.85; font-size: 0.95rem; }
   background: rgba(255,255,255,0.08); padding: 2.5px 7px;
   border-radius: 10px; color: var(--champagne);
   margin-left: auto; letter-spacing: 0.5px; text-transform: uppercase;
+}
+
+.f-app-btns {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+}
+.f-app-btns .f-dl-btn {
+  margin-bottom: 0;
+  flex: 1;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .f-app-btns {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .f-app-btns .f-dl-btn {
+    justify-content: flex-start;
+  }
 }
 
 .footer-bottom {
