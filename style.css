@@ -1475,6 +1475,13 @@ p { line-height: 1.85; font-size: 0.95rem; }
   margin-bottom: 0.6rem; transition: var(--ease); min-height: 44px;
 }
 .f-dl-btn:hover { border-color: var(--champagne); transform: translateY(-2px); }
+
+.f-app-btns {
+  display: flex; gap: 10px; width: 100%;
+}
+.f-app-btns .f-dl-btn {
+  flex: 1; justify-content: center; padding: 0.6rem 0.5rem; margin-bottom: 0;
+}
 .f-dl-soon { cursor: not-allowed; opacity: 0.8; }
 .f-dl-soon:hover { border-color: rgba(200,169,110,0.18); transform: translateY(0); }
 .f-coming-tag {
